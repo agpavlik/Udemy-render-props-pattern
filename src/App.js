@@ -3,18 +3,20 @@ import { faker } from "@faker-js/faker";
 import "./styles.css";
 import withToggles from "./HOC";
 
+// Generate products randomly using faker.js library.
 const products = Array.from({ length: 20 }, () => {
   return {
     productName: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
-    price: faker.commerce.price()
+    price: faker.commerce.price(),
   };
 });
 
+// Generate companies randomly using faker.js library.
 const companies = Array.from({ length: 15 }, () => {
   return {
     companyName: faker.company.name(),
-    phrase: faker.company.catchPhrase()
+    phrase: faker.company.catchPhrase(),
   };
 });
 
@@ -47,17 +49,20 @@ function CompanyItem({ company, defaultVisibility }) {
   );
 }
 
+// 2. Receive the render prop
 function List({ title, items, render }) {
   const [isOpen, setIsOpen] = useState(true);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const displayItems = isCollapsed ? items.slice(0, 3) : items;
 
+  // Logic responsible for doing collapsing
   function toggleOpen() {
     setIsOpen((isOpen) => !isOpen);
     setIsCollapsed(false);
   }
 
+  // 3. Place render into map method
   return (
     <div className="list-container">
       <div className="heading">
@@ -75,9 +80,6 @@ function List({ title, items, render }) {
   );
 }
 
-// LATER: Let's say we got this component from a 3rd-party library,
-// and can't change it. But we still want to add the 2 toggle
-// functionalities to it
 function ProductList({ title, items }) {
   return (
     <ul className="list">
@@ -89,6 +91,9 @@ function ProductList({ title, items }) {
 }
 
 const ProductListWithToggles = withToggles(ProductList);
+
+// 1. Pass in a prop called render, which will be a function.
+// For each product we want to render this product item component. For companies the same.
 
 export default function App() {
   return (
@@ -124,4 +129,3 @@ export default function App() {
     </div>
   );
 }
-
