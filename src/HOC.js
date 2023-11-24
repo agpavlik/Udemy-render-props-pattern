@@ -1,6 +1,12 @@
 import { useState } from "react";
 
+// What matters is that component usually called something that starts `with`,
+// and that it takes in one component and returns a new one. And the new one adds some
+// functionality to that passing component.
+
 export default function withToggles(WrappedComponent) {
+  // Here is identical logic with List in app.js. What is special now about this is that,
+  // in the middle of all this logic it contains that wrapped component.
   return function List(props) {
     const [isOpen, setIsOpen] = useState(true);
     const [isCollapsed, setIsCollapsed] = useState(false);

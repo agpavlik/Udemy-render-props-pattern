@@ -90,6 +90,10 @@ function ProductList({ title, items }) {
   );
 }
 
+// HOC - we had the product list component and then we passed that into
+// the Higher Order Component called withToggles. Since this returns a component,
+// we then stored that component in this new one - ProductListWithToggles
+
 const ProductListWithToggles = withToggles(ProductList);
 
 // 1. Pass in a prop called render, which will be a function.
